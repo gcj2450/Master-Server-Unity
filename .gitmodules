@@ -1,8 +1,0 @@
-[submodule "Unity-Client/Assets/EzyFox Server - C-Sharp Client - Unity"]
-	path = Unity-Client/Assets/EzyFox Server - C-Sharp Client - Unity
-	url = https://github.com/youngmonkeys/ezyfox-server-csharp-client.git
-	branch = unity-client
-[submodule "Unity-Server/Assets/EzyFox Server - C-Sharp Client - Unity"]
-	path = Unity-Server/Assets/EzyFox Server - C-Sharp Client - Unity
-	url = https://github.com/youngmonkeys/ezyfox-server-csharp-client.git
-	branch = unity-client
