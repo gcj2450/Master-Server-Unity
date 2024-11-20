@@ -7,7 +7,7 @@ namespace com.tvd12.ezyfoxserver.client.unity
 	public abstract class EzyDefaultController : EzyAbstractController
 	{
 		[SerializeField]
-		private EzySocketConfigHolderVariable socketConfigHolderVariable;
+		public EzySocketConfigHolderVariable socketConfigHolderVariable;
 
 		protected override EzySocketConfig GetSocketConfig()
 		{
