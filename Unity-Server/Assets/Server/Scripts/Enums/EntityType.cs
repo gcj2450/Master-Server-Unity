@@ -1,5 +1,9 @@
-public enum EntityType
+namespace Assambra.Server
 {
-    Player = 0,
-    NPC = 1,
+    public enum EntityType
+    {
+        Player = 0,
+        NPC = 1,
+    }
 }
+

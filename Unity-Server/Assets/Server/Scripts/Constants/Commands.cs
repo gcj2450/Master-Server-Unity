@@ -13,6 +13,7 @@ namespace Assambra.Server
         public const String SERVER_TO_CLIENTS = "serverToClients";
         public const String PLAYER_INPUT = "playerInput";
         public const String UPDATE_ENTITY_POSITION = "updateEntityPosition";
+        public const String PLAYER_JUMP = "playerJump";
         public const String CHANGE_SERVER = "changeServer";
 
         private Commands() { }

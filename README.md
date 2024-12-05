@@ -57,6 +57,16 @@
 <ul>
     <li>Extending EzyFox Server's room management to launch a dedicated Unity server</li>
     <li>One Unity-Server for all rooms/servers</li>
+    <li>Area of interest System on the Unity-Server</li>
+        <ul>
+            <li>Capability to spawn or despawn entities based on range</li>
+            <li>Each entity has a NearbyPlayer list and sends position updates only to players in this list</li>
+        </ul>
+    <li>Entity-based System</li>
+    <ul>
+        <li>An entity is the base and can be a player, effect, or building (currently, only Player is implemented)</li>
+        <li>Each entity automatically adds the NetworkTransform component, is added to the client’s entity list, and receives position updates or spawn/despawn events based on range</li>
+    </ul>
 </ul>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -68,27 +78,25 @@ Clone the repository:
 ```bash
 git clone git@github.com:Assambra/Master-Server-Unity.git
 ```
-Get submodules:
+Download and extract the file: [ezyfox-server-csharp-client-1.1.6-unity.zip](https://github.com/youngmonkeys/ezyfox-server-csharp-client/archive/refs/tags/v1.1.6-unity.zip).
 
-Open your Git command client, go to the Master-Server-Unity directory, and clone the submodules.
-```bash
-cd Master-Server-Unity
-```
-```bash
-git submodule update --init --recursive
-```
-Now open both Unity projects, Unity-Server and Unity-Client, in your Unity editor. You will get a bunch of errors; ignore them for now as we will fix this in the next steps. Do the following step for both projects because it is identical in both projects.
+Perform the following steps for both Unity projects: **Unity-Client** and **Unity-Server**:
+1. Insert the extracted folder `ezyfox-server-csharp-client-1.1.6-unity` into the root folder `/Assets` of your opened Unity project.
+2. Open the Unity Editor and navigate to the folder `Assets/ezyfox-server-csharp-client-1.1.6-unity`.
+3. Right-click inside the folder -> **Create** -> **Assembly Definition**, and rename it to `com.tvd12.ezyfoxserver.client`.
 
-Go to the folder `Assets/EzyFox Server - C-Sharp Client - Unity` in your Unity Editor, right-click -> Create -> Assembly Definition, and rename it to 
-```bash
-com.tvd12.ezyfoxserver.client
-```
+#### Unity-Server Setup
+In the Unity Editor:
+1. Navigate to `Assets/Unity-Server/Scripts/Assambra.Server`.
+2. In the Inspector, locate the **Assembly Definition Reference** section.
+3. Remove the missing reference starting with `GUID:` (if present).
+4. Add a new reference by clicking the plus sign (+) and select the earlier created `com.tvd12.ezyfoxserver.client` assembly definition.
+5. Click **Apply**.
 
-Server: In the Unity Editor, open the folder and select the file `Assets/Server/Scripts/Assambra.Server`.
-
-Client: In the Unity Editor, open the folder and select the file `Assets/Client/Scripts/Assambra.Client`.
-
-In the Inspector under Assembly Definition Reference, there is some missing reference starting with GUID:. Delete this one and add a new one with the plus sign and select the earlier created `com.tvd12.ezyfoxserver.client` assembly definition. Don't forget to hit apply, then it should recompile and the errors should be gone.
+#### Unity-Client Setup
+Repeat the same steps for the **Unity-Client** project:
+1. Navigate to `Assets/Unity-Client/Scripts/Assambra.Client`.
+2. Follow the same process for updating the **Assembly Definition Reference**.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

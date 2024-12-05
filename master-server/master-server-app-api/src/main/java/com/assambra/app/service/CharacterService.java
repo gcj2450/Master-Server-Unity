@@ -70,13 +70,17 @@ public class CharacterService extends EzyLoggable {
     public List<CharacterLocation> getAllCharacterLocationsOfUser(EzyUser ezyUser)
     {
         User user = userRepo.findByField("username", ezyUser.getName());
-        Character character = characterRepo.findByField("userId", user.getId());
+        List<Character> characters = characterRepo.findListByField("userId", user.getId());
 
-        List<CharacterLocation> characterLocations = new ArrayList<>();
-        if(character != null)
-            return characterLocationRepo.findListByField("characterId", character.getId());
-        else
-            return characterLocations;
+        if (characters.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<Long> characterIds = characters.stream()
+                .map(Character::getId)
+                .collect(Collectors.toList());
+
+        return characterLocationRepo.findByCharacterIds(characterIds);
     }
 
     public CharacterInfoListModel getCharacterInfoListModel(EzyUser ezyUser)

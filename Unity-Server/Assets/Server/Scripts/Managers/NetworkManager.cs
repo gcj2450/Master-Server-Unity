@@ -35,6 +35,7 @@ namespace Assambra.Server
             AddHandler<EzyObject>(Commands.PLAYER_SPAWN, PlayerSpawnRequest);
             AddHandler<EzyObject>(Commands.PLAYER_DESPAWN, PlayerDespawnRequest);
             AddHandler<EzyObject>(Commands.PLAYER_INPUT, ReceivePlayerInput);
+            AddHandler<EzyObject>(Commands.PLAYER_JUMP, ReceivePlayerJump);
         }
 
         private void Update()
@@ -294,6 +295,20 @@ namespace Assambra.Server
                 {
                     PlayerController playerController = player.EntityGameObject.GetComponent<PlayerController>();
                     playerController.Move = new Vector3(input.x, 0, input.y);
+                }
+            }
+        }
+
+        public void ReceivePlayerJump(EzyAppProxy proxy, EzyObject data)
+        {
+            long id = data.get<long>("id");
+
+            if (ServerManager.Instance.ServerEntities.TryGetValue((uint)id, out Entity entity))
+            {
+                if (entity is Player player)
+                {
+                    PlayerController playerController = player.EntityGameObject.GetComponent<PlayerController>();
+                    playerController.Jump = true;
                 }
             }
         }

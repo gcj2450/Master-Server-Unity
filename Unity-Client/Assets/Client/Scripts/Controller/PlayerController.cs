@@ -12,6 +12,7 @@ namespace Assambra.Client
         private CharacterController _characterController;
         private Vector3 _input;
         private Vector3 _move;
+        private bool _jump;
         private Vector3 _playerVelocity;
         private bool _groundedPlayer;
         private float _playerSpeed = 5.0f;
@@ -53,6 +54,7 @@ namespace Assambra.Client
             if (Input.GetButtonDown("Jump") && _groundedPlayer)
             {
                 _playerVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravityValue);
+                _jump = true;
             }
 
             _playerVelocity.y += _gravityValue * Time.deltaTime;
@@ -61,6 +63,12 @@ namespace Assambra.Client
 
         private void FixedUpdate()
         {
+            if (_jump)
+            {
+                NetworkManager.Instance.SendPlayerJump(_player.Id, _player.Room);
+                _jump = false;
+            }
+
             if (_input != Vector3.zero || !sendOnceZero)
             {
                 if(_input == Vector3.zero)

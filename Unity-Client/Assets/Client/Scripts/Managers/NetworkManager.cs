@@ -176,6 +176,15 @@ namespace Assambra.Client
             });
         }
 
+        public void SendPlayerJump(long id, string room)
+        {
+            SendClientToServer(room, "playerJump", new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("id", id),
+                new KeyValuePair<string, object>("room", room)
+            });
+        }
+
         #endregion
 
         #region RECEIVE FROM ROOM SERVER 
